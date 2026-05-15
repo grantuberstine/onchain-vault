@@ -86,8 +86,7 @@ export function renderCollage(layout) {
     if (state.layout === 'bento')  drawBento(res.w, res.h);
     if (state.layout === 'grid')   drawGrid(res.w, res.h);
     if (state.layout === 'mosaic') drawMosaic(res.w, res.h);
-    drawOverlay(res.w, res.h);
-    drawCornerMark(res.w, res.h);
+    // Watermarks intentionally omitted — just images on the background.
     if (state.onLayoutChange) state.onLayoutChange(state.layout);
   });
 }
@@ -416,10 +415,8 @@ function drawGrid(w, h) {
   else cols = 9;
   const rows = Math.ceil(count / cols);
 
-  // Reserve bottom strip for title scrim (~22%)
-  const reserveBottom = Math.round(h * 0.10);
   const innerW = w - margin * 2;
-  const innerH = h - margin * 2 - reserveBottom;
+  const innerH = h - margin * 2;
   const cellW = (innerW - gutter * (cols - 1)) / cols;
   // For consistent squares, use cellW as the cell side, then center the block
   const cellSide = Math.min(cellW, (innerH - gutter * (rows - 1)) / rows);
@@ -508,9 +505,9 @@ function drawMosaic(w, h) {
       x = rand() * w;
       y = rand() * h * 0.35;
     } else if (layer === 1) {
-      // outer bottom (avoid the title scrim area at bottom 22%)
+      // outer bottom — full canvas now that watermark is gone
       x = rand() * w;
-      y = h * 0.45 + rand() * h * 0.32;
+      y = h * 0.55 + rand() * h * 0.42;
     } else {
       // sides
       x = (rand() < 0.5 ? rand() * w * 0.18 : w * 0.82 + rand() * w * 0.18);
