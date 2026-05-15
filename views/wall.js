@@ -16,13 +16,16 @@
 let active = null;
 
 const ROW_COUNT = 3;
-// Parallax speed multipliers per row — middle row is the "reference",
-// outer rows move a bit faster/slower for depth.
-const ROW_SPEEDS = [1.15, 1.0, 0.85];
-// Easing factor for the smooth follow (higher = snappier, lower = floatier).
-const EASE = 0.085;
-// Max scroll velocity factor — caps how aggressively cursor X drives motion.
-const MAX_VELOCITY = 1.0;
+// Per-row speed — kept nearly uniform to avoid disorienting parallax drift.
+// Tiny variation gives a hint of depth without making the wall feel "spazzy."
+const ROW_SPEEDS = [1.04, 1.00, 0.96];
+// Easing factor for smooth follow (lower = floatier).
+const EASE = 0.06;
+// Auto-pan velocity at full deflection (only kicks in near the edges).
+const MAX_VELOCITY = 0.55;
+// Dead zone size (fraction of stage width). Wide so most of the stage is
+// "rest" and only the edges trigger drift — easier to click without panning.
+const DEAD_ZONE = 0.40;
 
 /**
  * Initialize the wall.
@@ -170,20 +173,18 @@ export function initWall(opts) {
     endDrag();
     try { container.releasePointerCapture(e.pointerId); } catch (_) {}
     // Suppress the click that would fire on the tile under the release point
-    // if the user actually dragged (vs. a tap).
+    // if the user actually dragged (vs. a tap). 14px is more forgiving.
     const totalDrag = Math.abs(e.clientX - pointer.dragStartX);
-    if (totalDrag > 8) {
-      // Mark next click as suppressed
+    if (totalDrag > 14) {
       container._suppressClick = true;
-      setTimeout(() => { container._suppressClick = false; }, 50);
+      setTimeout(() => { container._suppressClick = false; }, 80);
     }
   }
   function endDrag() {
     pointer.dragging = false;
     container.classList.remove('is-grabbing');
-    // Momentum: convert velocity (px/ms) to a remaining slide target
-    // Multiply by a decay factor so it feels weighty but not slidey forever.
-    const momentum = pointer.velocity * 120; // tunable feel knob
+    // Gentle momentum — was too flingy before.
+    const momentum = pointer.velocity * 60;
     for (let i = 0; i < rowState.length; i++) {
       rowState[i].target += momentum * ROW_SPEEDS[i];
     }
@@ -193,11 +194,10 @@ export function initWall(opts) {
   function updatePointer(e) {
     const rect = container.getBoundingClientRect();
     pointer.x = e.clientX - rect.left;
-    // Normalize to -1..+1, with a small dead zone in the center.
+    // Normalize to -1..+1, with a big dead zone in the center.
     let n = (pointer.x / rect.width) * 2 - 1; // -1..+1
-    const deadZone = 0.08;
-    if (Math.abs(n) < deadZone) n = 0;
-    else n = (n - Math.sign(n) * deadZone) / (1 - deadZone);
+    if (Math.abs(n) < DEAD_ZONE) n = 0;
+    else n = (n - Math.sign(n) * DEAD_ZONE) / (1 - DEAD_ZONE);
     pointer.normX = clamp(n, -1, 1) * MAX_VELOCITY;
   }
 
@@ -207,6 +207,30 @@ export function initWall(opts) {
   container.addEventListener('pointerdown', onPointerDown);
   container.addEventListener('pointerup', onPointerUp);
   container.addEventListener('pointercancel', onPointerUp);
+
+  // Scroll-wheel → horizontal pan, native feel
+  function onWheel(e) {
+    if (!pointer.inside) return;
+    // Prefer horizontal delta; many trackpads send it. Fall back to vertical.
+    const delta = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * -1.0;
+    if (!delta) return;
+    e.preventDefault();
+    for (let i = 0; i < rowState.length; i++) {
+      rowState[i].target += delta * ROW_SPEEDS[i] * 0.6;
+    }
+  }
+  container.addEventListener('wheel', onWheel, { passive: false });
+
+  // Arrow keys when the wall has focus
+  function onKey(e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const step = container.clientWidth * 0.25 * (e.key === 'ArrowRight' ? -1 : 1);
+    for (let i = 0; i < rowState.length; i++) {
+      rowState[i].target += step * ROW_SPEEDS[i];
+    }
+  }
+  container.tabIndex = 0;
+  container.addEventListener('keydown', onKey);
 
   // Tile click → fire CustomEvent + optional callback
   function onTrackClick(e) {
@@ -273,7 +297,7 @@ export function initWall(opts) {
     // The cursor's normX drives a drift velocity (pixels per frame at 60fps reference).
     if (visible && !pointer.dragging && pointer.inside) {
       // Negative because cursor right → scroll left
-      const baseVel = -pointer.normX * 6; // px per ~16ms frame at full deflection
+      const baseVel = -pointer.normX * 2.4; // softer than before (was 6)
       const frameScale = dt / 16.67;
       for (let i = 0; i < rowState.length; i++) {
         rowState[i].target += baseVel * ROW_SPEEDS[i] * frameScale;
@@ -312,6 +336,8 @@ export function initWall(opts) {
       container.removeEventListener('pointerdown', onPointerDown);
       container.removeEventListener('pointerup', onPointerUp);
       container.removeEventListener('pointercancel', onPointerUp);
+      container.removeEventListener('wheel', onWheel);
+      container.removeEventListener('keydown', onKey);
       track.removeEventListener('click', onTrackClick);
       track.removeEventListener('pointerover', onTrackPointerOver);
       track.removeEventListener('pointerout', onTrackPointerOut);
@@ -325,7 +351,7 @@ export function initWall(opts) {
   // Add a brief usage hint
   const hint = document.createElement('div');
   hint.className = 'wall-hint';
-  hint.innerHTML = '<span class="wall-hint-dot"></span><span>Move cursor or drag</span>';
+  hint.innerHTML = '<span class="wall-hint-dot"></span><span>Drag, scroll, or hover the edges · Click any tile</span>';
   container.appendChild(hint);
 }
 
