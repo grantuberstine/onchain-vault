@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Tyler's NFT Vault</title>
-  <meta name="description" content="An interactive showcase of Tyler's NFT collection — 63 pieces across two wallets, including Bored Apes, Pudgy Penguins, KILLABEARS, Doodles, RENGA, and more." />
-  <meta property="og:title" content="Tyler's NFT Vault" />
-  <meta property="og:description" content="An interactive 3D showcase of Tyler's NFT collection." />
-  <link rel="preconnect" href="https://nft-cdn.alchemy.com" />
-  <link rel="preconnect" href="https://res.cloudinary.com" />
+  <title>bibbellydaddy's NFTs</title>
+  <meta name="description" content="An interactive showcase of bibbellydaddy's NFT collection — Bored Apes, Pudgy Penguins, KILLABEARS, Doodles, RENGA, and more." />
+  <meta property="og:title" content="bibbellydaddy's NFTs" />
+  <meta property="og:description" content="An interactive 3D showcase of bibbellydaddy's NFT collection." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./views/collage.css" />
+  <link rel="stylesheet" href="./views/wall.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>" />
   <script type="importmap">
   {
@@ -23,15 +23,19 @@
   </script>
 </head>
 <body>
+  <!-- Animated background canvas (behind everything) -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
   <header class="topbar">
     <div class="brand">
       <span class="brand-mark"></span>
-      <span class="brand-name">Tyler's NFT Vault</span>
+      <span class="brand-name">bibbellydaddy's NFTs</span>
     </div>
     <nav class="topbar-nav">
       <a href="#featured">Featured</a>
-      <a href="#collection">Full Collection</a>
-      <a href="#wallets">Wallets</a>
+      <a href="#vault" data-tab-link="vault">Vault</a>
+      <a href="#collage" data-tab-link="collage">Collage</a>
+      <a href="#wall" data-tab-link="wall">Wall</a>
     </nav>
   </header>
 
@@ -42,7 +46,7 @@
       <div class="hero-title">
         <h1>
           <span class="kicker">Onchain holdings of</span>
-          <span class="display">Tyler</span>
+          <span class="display">bibbellydaddy</span>
         </h1>
         <p class="hero-sub">
           <span class="stat"><b id="stat-total">…</b> NFTs</span>
@@ -51,7 +55,6 @@
           <span class="dot">·</span>
           <span class="stat"><b id="stat-wallets">2</b> wallets</span>
         </p>
-        <p class="hero-hint">Drag to spin · Click any piece to inspect · Scroll for the full vault</p>
       </div>
     </div>
 
@@ -59,25 +62,80 @@
       <div class="spinner"></div>
       <span>Loading collection…</span>
     </div>
-
-    <div class="scroll-cue" aria-hidden="true">
-      <span>SCROLL</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
-  <section id="collection" class="collection">
-    <div class="collection-head">
+  <!-- Tabs nav -->
+  <nav class="tabs" role="tablist" aria-label="View mode">
+    <button class="tab active" data-tab="vault" role="tab" aria-selected="true">
+      <span class="tab-icon" aria-hidden="true">▦</span>
+      <span class="tab-label">Vault</span>
+      <span class="tab-meta">Filter & explore</span>
+    </button>
+    <button class="tab" data-tab="collage" role="tab" aria-selected="false">
+      <span class="tab-icon" aria-hidden="true">✦</span>
+      <span class="tab-label">Collage</span>
+      <span class="tab-meta">Shareable image</span>
+    </button>
+    <button class="tab" data-tab="wall" role="tab" aria-selected="false">
+      <span class="tab-icon" aria-hidden="true">▥</span>
+      <span class="tab-label">Wall</span>
+      <span class="tab-meta">See it all at once</span>
+    </button>
+  </nav>
+
+  <!-- View: Vault (masonry + filters) -->
+  <section id="vault" class="view view-vault active" role="tabpanel">
+    <div class="view-head">
       <div class="title-block">
         <h2>The Full Vault</h2>
-        <p>Every piece, both wallets, no spam.</p>
+        <p>Every piece, both wallets.</p>
       </div>
       <div class="filters" id="filters" role="tablist" aria-label="Filter collection"></div>
     </div>
-
     <div class="grid" id="grid"></div>
+  </section>
 
-    <div id="wallets" class="wallets-block">
+  <!-- View: Collage (designed share image) -->
+  <section id="collage" class="view view-collage" role="tabpanel" hidden>
+    <div class="view-head">
+      <div class="title-block">
+        <h2>The Collage</h2>
+        <p>A shareable snapshot — download as PNG.</p>
+      </div>
+      <div class="collage-controls">
+        <div class="seg" role="radiogroup" aria-label="Layout">
+          <button class="seg-btn active" data-layout="bento" role="radio" aria-checked="true">Bento</button>
+          <button class="seg-btn" data-layout="grid" role="radio" aria-checked="false">Grid</button>
+          <button class="seg-btn" data-layout="mosaic" role="radio" aria-checked="false">Mosaic</button>
+        </div>
+        <button class="dl-btn" id="dl-collage">
+          <span aria-hidden="true">⬇</span> Download PNG
+        </button>
+      </div>
+    </div>
+    <div class="collage-stage">
+      <canvas id="collage-canvas" aria-label="bibbellydaddy's NFT collage"></canvas>
+      <div class="collage-hint">High-resolution. Right-click to save, or use the download button.</div>
+    </div>
+  </section>
+
+  <!-- View: Wall (dense cursor-driven survey) -->
+  <section id="wall" class="view view-wall" role="tabpanel" hidden>
+    <div class="view-head">
+      <div class="title-block">
+        <h2>The Wall</h2>
+        <p>Every NFT side-by-side. Move your cursor to glide through.</p>
+      </div>
+    </div>
+    <div class="wall-stage" id="wall-stage">
+      <div class="wall-track" id="wall-track"></div>
+      <div class="wall-edge wall-edge-left" aria-hidden="true"></div>
+      <div class="wall-edge wall-edge-right" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="wallets-section">
+    <div class="wallets-block">
       <h3>Wallets tracked</h3>
       <ul>
         <li>
@@ -95,7 +153,7 @@
   </section>
 
   <footer class="footer">
-    <p>Snapshot of holdings · Data via Alchemy NFT API · Built for fun</p>
+    <p>Snapshot of onchain holdings · Built for fun</p>
   </footer>
 
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
