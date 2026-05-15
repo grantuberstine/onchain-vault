@@ -51,21 +51,21 @@ jobs:
           node data/process.js
           node data/optimize-images.js
 
-      - name: Commit if anything changed
+      - name: Commit if anything meaningful changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Only stage the files we care about — don't accidentally pull in
-          # node_modules or any transient install artifacts.
-          git add -A data/wallet1.json data/wallet2.json nfts.json images/
-
-          if git diff --cached --quiet; then
-            echo "No changes. Nothing to commit."
+          # The runtime cares about nfts.json and images/. If only the raw
+          # wallet JSONs changed (Alchemy bumps `lastIngestedAt` on every
+          # call), there's no actual snapshot change — skip the commit so
+          # we don't spam history.
+          if git diff --quiet -- nfts.json images/; then
+            echo "No meaningful change (only Alchemy metadata timestamps moved). Skipping."
             exit 0
           fi
 
-          # Summarize what changed for the commit message
+          git add -A data/wallet1.json data/wallet2.json nfts.json images/
           changed=$(git diff --cached --name-only | head -8 | tr '\n' ' ')
           git commit -m "Weekly refresh: snapshot updated ($(date -u +'%Y-%m-%d'))" \
                      -m "Touched: ${changed}"
