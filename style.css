@@ -180,10 +180,15 @@ button { font: inherit; cursor: pointer; }
   max-width: 1480px;
   margin: 0 auto;
   padding: 12px clamp(20px, 4vw, 48px);
-  background: linear-gradient(180deg, rgba(7,7,10,0.92), rgba(7,7,10,0.78));
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border-bottom: 1px solid var(--border);
+  background: transparent;
+  transition: backdrop-filter 0.25s, background 0.25s;
+}
+/* When the page is scrolled, fade in a subtle blur so cards stay legible
+   over the content underneath. The .scrolled class is added by app.js. */
+.tabs.scrolled {
+  background: rgba(7, 7, 10, 0.45);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
 .tab {
   flex: 1 1 0;
