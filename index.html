@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tyler's NFT Vault</title>
+  <meta name="description" content="An interactive showcase of Tyler's NFT collection — 63 pieces across two wallets, including Bored Apes, Pudgy Penguins, KILLABEARS, Doodles, RENGA, and more." />
+  <meta property="og:title" content="Tyler's NFT Vault" />
+  <meta property="og:description" content="An interactive 3D showcase of Tyler's NFT collection." />
+  <link rel="preconnect" href="https://nft-cdn.alchemy.com" />
+  <link rel="preconnect" href="https://res.cloudinary.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Tyler's NFT Vault</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="#featured">Featured</a>
+      <a href="#collection">Full Collection</a>
+      <a href="#wallets">Wallets</a>
+    </nav>
+  </header>
+
+  <section id="featured" class="hero">
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-foreground">
+      <div class="hero-title">
+        <h1>
+          <span class="kicker">Onchain holdings of</span>
+          <span class="display">Tyler</span>
+        </h1>
+        <p class="hero-sub">
+          <span class="stat"><b id="stat-total">…</b> NFTs</span>
+          <span class="dot">·</span>
+          <span class="stat"><b id="stat-collections">…</b> collections</span>
+          <span class="dot">·</span>
+          <span class="stat"><b id="stat-wallets">2</b> wallets</span>
+        </p>
+        <p class="hero-hint">Drag to spin · Click any piece to inspect · Scroll for the full vault</p>
+      </div>
+    </div>
+
+    <div class="hero-loading" id="hero-loading">
+      <div class="spinner"></div>
+      <span>Loading collection…</span>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section id="collection" class="collection">
+    <div class="collection-head">
+      <div class="title-block">
+        <h2>The Full Vault</h2>
+        <p>Every piece, both wallets, no spam.</p>
+      </div>
+      <div class="filters" id="filters" role="tablist" aria-label="Filter collection"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div id="wallets" class="wallets-block">
+      <h3>Wallets tracked</h3>
+      <ul>
+        <li>
+          <span class="wallet-label">Wallet 1</span>
+          <code>0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a</code>
+          <a href="https://etherscan.io/address/0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a" target="_blank" rel="noopener">Etherscan ↗</a>
+        </li>
+        <li>
+          <span class="wallet-label">Wallet 2</span>
+          <code>0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644</code>
+          <a href="https://etherscan.io/address/0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644" target="_blank" rel="noopener">Etherscan ↗</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Snapshot of holdings · Data via Alchemy NFT API · Built for fun</p>
+  </footer>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close="1" aria-label="Close">×</button>
+      <div class="modal-image">
+        <img id="modal-img" alt="" />
+      </div>
+      <div class="modal-meta">
+        <div class="modal-collection" id="modal-collection"></div>
+        <h3 id="modal-name"></h3>
+        <p id="modal-desc"></p>
+        <dl class="modal-attrs">
+          <div><dt>Token ID</dt><dd id="modal-token"></dd></div>
+          <div><dt>Contract</dt><dd id="modal-contract"></dd></div>
+          <div><dt>Wallet</dt><dd id="modal-wallet"></dd></div>
+          <div><dt>Type</dt><dd id="modal-type"></dd></div>
+        </dl>
+        <a id="modal-opensea" class="opensea-btn" target="_blank" rel="noopener">View on OpenSea ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
