@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>bibbellydaddy's NFTs</title>
-  <meta name="description" content="An interactive showcase of bibbellydaddy's NFT collection — Bored Apes, Pudgy Penguins, KILLABEARS, Doodles, RENGA, and more." />
+  <meta name="description" content="Snapshot of an Ethereum NFT collection — Bored Apes, Pudgy Penguins, KILLABEARS, Doodles, RENGA, and more." />
   <meta property="og:title" content="bibbellydaddy's NFTs" />
-  <meta property="og:description" content="An interactive 3D showcase of bibbellydaddy's NFT collection." />
+  <meta property="og:description" content="Snapshot of an Ethereum NFT collection." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -23,7 +23,6 @@
   </script>
 </head>
 <body>
-  <!-- Animated background canvas (behind everything) -->
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
   <header class="topbar">
@@ -31,95 +30,93 @@
       <span class="brand-mark"></span>
       <span class="brand-name">bibbellydaddy's NFTs</span>
     </div>
-    <nav class="topbar-nav">
-      <a href="#featured">Featured</a>
-      <a href="#vault" data-tab-link="vault">Vault</a>
-      <a href="#collage" data-tab-link="collage">Collage</a>
-      <a href="#wall" data-tab-link="wall">Wall</a>
-    </nav>
+    <div class="topbar-meta">
+      <span class="stat-pill"><b id="stat-total">…</b> pieces</span>
+      <span class="stat-pill"><b id="stat-collections">…</b> collections</span>
+    </div>
   </header>
 
-  <section id="featured" class="hero">
-    <canvas id="hero-canvas"></canvas>
-
-    <div class="hero-foreground">
-      <div class="hero-title">
-        <h1>
-          <span class="kicker">Onchain holdings of</span>
-          <span class="display">bibbellydaddy</span>
-        </h1>
-        <p class="hero-sub">
-          <span class="stat"><b id="stat-total">…</b> NFTs</span>
-          <span class="dot">·</span>
-          <span class="stat"><b id="stat-collections">…</b> collections</span>
-          <span class="dot">·</span>
-          <span class="stat"><b id="stat-wallets">2</b> wallets</span>
-        </p>
-      </div>
-    </div>
-
-    <div class="hero-loading" id="hero-loading">
-      <div class="spinner"></div>
-      <span>Loading collection…</span>
-    </div>
-  </section>
-
-  <!-- Tabs nav -->
-  <nav class="tabs" role="tablist" aria-label="View mode">
-    <button class="tab active" data-tab="vault" role="tab" aria-selected="true">
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button class="tab active" data-tab="share" role="tab" aria-selected="true">
+      <span class="tab-icon" aria-hidden="true">✦</span>
+      <span class="tab-label">Share</span>
+      <span class="tab-meta">Make an image</span>
+    </button>
+    <button class="tab" data-tab="vault" role="tab" aria-selected="false">
       <span class="tab-icon" aria-hidden="true">▦</span>
       <span class="tab-label">Vault</span>
-      <span class="tab-meta">Filter & explore</span>
-    </button>
-    <button class="tab" data-tab="collage" role="tab" aria-selected="false">
-      <span class="tab-icon" aria-hidden="true">✦</span>
-      <span class="tab-label">Collage</span>
-      <span class="tab-meta">Shareable image</span>
+      <span class="tab-meta">Browse & filter</span>
     </button>
     <button class="tab" data-tab="wall" role="tab" aria-selected="false">
       <span class="tab-icon" aria-hidden="true">▥</span>
       <span class="tab-label">Wall</span>
-      <span class="tab-meta">See it all at once</span>
+      <span class="tab-meta">See it all</span>
+    </button>
+    <button class="tab" data-tab="carousel" role="tab" aria-selected="false">
+      <span class="tab-icon" aria-hidden="true">◯</span>
+      <span class="tab-label">Carousel</span>
+      <span class="tab-meta">3D rotating ring</span>
     </button>
   </nav>
 
-  <!-- View: Vault (masonry + filters) -->
-  <section id="vault" class="view view-vault active" role="tabpanel">
+  <!-- View: Share (default) — filter + layout + save image -->
+  <section id="share" class="view view-share active" role="tabpanel">
     <div class="view-head">
       <div class="title-block">
-        <h2>The Full Vault</h2>
-        <p>Every piece, both wallets.</p>
+        <h2>Make a snapshot</h2>
+        <p>Pick a filter, pick a layout, save the image to your camera roll.</p>
+      </div>
+    </div>
+
+    <div class="share-controls">
+      <div class="control-group">
+        <label class="control-label">Filter</label>
+        <div class="chips" id="share-filters" role="listbox" aria-label="Filter NFTs"></div>
+      </div>
+      <div class="control-group control-group-right">
+        <label class="control-label">Layout</label>
+        <div class="seg" role="radiogroup" aria-label="Layout">
+          <button class="seg-btn active" data-layout="bento" role="radio" aria-checked="true">Bento</button>
+          <button class="seg-btn" data-layout="grid" role="radio" aria-checked="false">Grid</button>
+          <button class="seg-btn" data-layout="mosaic" role="radio" aria-checked="false">Mosaic</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="collage-stage">
+      <canvas id="collage-canvas" aria-label="NFT snapshot preview"></canvas>
+      <div class="share-loader" id="share-loader">
+        <div class="spinner"></div>
+        <span>Loading collection…</span>
+      </div>
+    </div>
+
+    <div class="share-actions">
+      <button class="btn btn-primary" id="save-image">
+        <span aria-hidden="true">⤓</span> Save image
+      </button>
+      <button class="btn btn-secondary" id="download-image">
+        <span aria-hidden="true">⬇</span> Download PNG
+      </button>
+    </div>
+    <p class="share-hint" id="share-hint">
+      On phones, "Save image" opens the share sheet — tap "Save Image" to add to your camera roll.
+    </p>
+  </section>
+
+  <!-- View: Vault -->
+  <section id="vault" class="view view-vault" role="tabpanel" hidden>
+    <div class="view-head">
+      <div class="title-block">
+        <h2>The Vault</h2>
+        <p>Every piece. Tap to inspect.</p>
       </div>
       <div class="filters" id="filters" role="tablist" aria-label="Filter collection"></div>
     </div>
     <div class="grid" id="grid"></div>
   </section>
 
-  <!-- View: Collage (designed share image) -->
-  <section id="collage" class="view view-collage" role="tabpanel" hidden>
-    <div class="view-head">
-      <div class="title-block">
-        <h2>The Collage</h2>
-        <p>A shareable snapshot — download as PNG.</p>
-      </div>
-      <div class="collage-controls">
-        <div class="seg" role="radiogroup" aria-label="Layout">
-          <button class="seg-btn active" data-layout="bento" role="radio" aria-checked="true">Bento</button>
-          <button class="seg-btn" data-layout="grid" role="radio" aria-checked="false">Grid</button>
-          <button class="seg-btn" data-layout="mosaic" role="radio" aria-checked="false">Mosaic</button>
-        </div>
-        <button class="dl-btn" id="dl-collage">
-          <span aria-hidden="true">⬇</span> Download PNG
-        </button>
-      </div>
-    </div>
-    <div class="collage-stage">
-      <canvas id="collage-canvas" aria-label="bibbellydaddy's NFT collage"></canvas>
-      <div class="collage-hint">High-resolution. Right-click to save, or use the download button.</div>
-    </div>
-  </section>
-
-  <!-- View: Wall (dense cursor-driven survey) -->
+  <!-- View: Wall -->
   <section id="wall" class="view view-wall" role="tabpanel" hidden>
     <div class="view-head">
       <div class="title-block">
@@ -134,27 +131,19 @@
     </div>
   </section>
 
-  <section class="wallets-section">
-    <div class="wallets-block">
-      <h3>Wallets tracked</h3>
-      <ul>
-        <li>
-          <span class="wallet-label">Wallet 1</span>
-          <code>0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a</code>
-          <a href="https://etherscan.io/address/0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a" target="_blank" rel="noopener">Etherscan ↗</a>
-        </li>
-        <li>
-          <span class="wallet-label">Wallet 2</span>
-          <code>0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644</code>
-          <a href="https://etherscan.io/address/0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644" target="_blank" rel="noopener">Etherscan ↗</a>
-        </li>
-      </ul>
+  <!-- View: Carousel (3D ring) -->
+  <section id="carousel" class="view view-carousel" role="tabpanel" hidden>
+    <div class="carousel-stage">
+      <canvas id="hero-canvas"></canvas>
+      <div class="carousel-foreground">
+        <p class="kicker">Drag to spin · Tap a piece to inspect</p>
+      </div>
+      <div class="hero-loading" id="hero-loading">
+        <div class="spinner"></div>
+        <span>Loading 3D scene…</span>
+      </div>
     </div>
   </section>
-
-  <footer class="footer">
-    <p>Snapshot of onchain holdings · Built for fun</p>
-  </footer>
 
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-backdrop" data-close="1"></div>
@@ -170,7 +159,6 @@
         <dl class="modal-attrs">
           <div><dt>Token ID</dt><dd id="modal-token"></dd></div>
           <div><dt>Contract</dt><dd id="modal-contract"></dd></div>
-          <div><dt>Wallet</dt><dd id="modal-wallet"></dd></div>
           <div><dt>Type</dt><dd id="modal-type"></dd></div>
         </dl>
         <a id="modal-opensea" class="opensea-btn" target="_blank" rel="noopener">View on OpenSea ↗</a>

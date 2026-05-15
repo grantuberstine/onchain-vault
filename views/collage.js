@@ -92,7 +92,23 @@ export function renderCollage(layout) {
   });
 }
 
-export function downloadCollage(filename = 'bibbellydaddys-nfts.png') {
+// Swap the active NFT set without re-initializing. Images already loaded by
+// initCollage remain cached; this just changes what gets drawn next render.
+export function setCollageNfts(nfts) {
+  state.nfts = Array.isArray(nfts) ? nfts.slice() : [];
+  state.featured = state.nfts.filter((n) => n.featured);
+  state.others = state.nfts.filter((n) => !n.featured);
+}
+
+// Async export to PNG Blob — useful for Web Share API.
+export function collageToBlob(type = 'image/png', quality) {
+  return new Promise((resolve) => {
+    if (!state.canvas) return resolve(null);
+    state.canvas.toBlob((blob) => resolve(blob), type, quality);
+  });
+}
+
+export function downloadCollage(filename = 'snapshot.png') {
   if (!state.canvas) return;
   state.canvas.toBlob((blob) => {
     if (!blob) return;
@@ -218,7 +234,10 @@ function drawOverlay(w, h) {
 
   // Subtitle — pieces · collections · wallets
   const data = computeStats();
-  const sub = `${data.total} pieces · ${data.collections} collections · 2 wallets`;
+  const piece = data.total === 1 ? 'piece' : 'pieces';
+  const coll = data.collections === 1 ? 'collection' : 'collections';
+  const wall = data.wallets === 1 ? 'wallet' : 'wallets';
+  const sub = `${data.total} ${piece} · ${data.collections} ${coll} · ${data.wallets} ${wall}`;
   ctx.fillStyle = BRAND.dim;
   ctx.font = `500 ${subSize}px "Inter", system-ui, sans-serif`;
   ctx.fillText(sub, pad, h - pad);
@@ -265,9 +284,10 @@ function drawCornerMark(w, h) {
 }
 
 function computeStats() {
+  const wallets = new Set(state.nfts.map((n) => n.wallet)).size;
   // Use loaded data; fall back to counts derived from nfts array
   const collections = new Set(state.nfts.map((n) => n.collection)).size;
-  return { total: state.nfts.length, collections };
+  return { total: state.nfts.length, collections, wallets };
 }
 
 function formatDate(d) {
