@@ -44,6 +44,12 @@ function initTabs() {
   $$('.tab').forEach((btn) => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
+  // Add a subtle backdrop to the tabs strip once the page starts to scroll,
+  // so the cards stay readable over scrolling content.
+  const tabsEl = $('.tabs');
+  const onScroll = () => tabsEl.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 async function switchTab(name) {
