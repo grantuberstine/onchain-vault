@@ -117,6 +117,14 @@ async function initShareView() {
   $('#save-image').addEventListener('click', saveImage);
   $('#download-image').addEventListener('click', () => collageMod.downloadCollage(currentFilename()));
 
+  // Shuffle — cycle through layout variants / seeds
+  $('#shuffle-layout').addEventListener('click', () => {
+    collageMod.shuffleCollage();
+    const btn = $('#shuffle-layout');
+    btn.classList.add('spin');
+    setTimeout(() => btn.classList.remove('spin'), 500);
+  });
+
   // Hint text varies by capability
   if (!canUseNativeShare()) {
     $('#share-hint').textContent = 'Click Save image to download the PNG, then drop it anywhere.';

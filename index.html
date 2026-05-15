@@ -75,10 +75,15 @@
       </div>
       <div class="control-group control-group-right">
         <label class="control-label">Layout</label>
-        <div class="seg" role="radiogroup" aria-label="Layout">
-          <button class="seg-btn active" data-layout="bento" role="radio" aria-checked="true">Bento</button>
-          <button class="seg-btn" data-layout="grid" role="radio" aria-checked="false">Grid</button>
-          <button class="seg-btn" data-layout="mosaic" role="radio" aria-checked="false">Mosaic</button>
+        <div class="layout-row">
+          <div class="seg" role="radiogroup" aria-label="Layout">
+            <button class="seg-btn active" data-layout="bento" role="radio" aria-checked="true">Bento</button>
+            <button class="seg-btn" data-layout="grid" role="radio" aria-checked="false">Grid</button>
+            <button class="seg-btn" data-layout="mosaic" role="radio" aria-checked="false">Mosaic</button>
+          </div>
+          <button class="shuffle-btn" id="shuffle-layout" aria-label="Try a different arrangement">
+            <span aria-hidden="true">⟳</span> Shuffle
+          </button>
         </div>
       </div>
     </div>
