@@ -73,7 +73,23 @@ button { font: inherit; cursor: pointer; }
   justify-content: space-between;
   max-width: 1480px;
   margin: 0 auto;
-  padding: 22px clamp(20px, 4vw, 48px) 8px;
+  padding: 18px clamp(20px, 4vw, 48px);
+}
+/* Extend the topbar background to the full viewport width — banner style
+   that visually flows into the sticky tabs below. */
+.topbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(12, 12, 20, 0.72), rgba(12, 12, 20, 0.32));
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  z-index: -1;
+  pointer-events: none;
 }
 .brand {
   display: flex; align-items: center; gap: 12px;
