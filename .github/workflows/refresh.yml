@@ -1,0 +1,72 @@
+name: Weekly refresh
+
+# Refresh the NFT snapshot once per week (Sunday 06:00 UTC) so any new
+# acquisitions or sales are reflected without manual intervention. Also
+# exposed as a manual trigger from the Actions tab.
+
+on:
+  schedule:
+    - cron: '0 6 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install sharp (one-shot, not persisted)
+        run: npm install --no-save --no-package-lock sharp
+
+      - name: Fetch wallet 1
+        run: |
+          curl -fsSL --retry 3 --retry-delay 5 \
+            -H "Origin: https://www.alchemy.com" \
+            "https://eth-mainnet.g.alchemy.com/nft/v3/docs-demo/getNFTsForOwner?owner=0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a&withMetadata=true&excludeFilters[]=SPAM&pageSize=100" \
+            -o data/wallet1.json
+
+      - name: Fetch wallet 2
+        run: |
+          curl -fsSL --retry 3 --retry-delay 5 \
+            -H "Origin: https://www.alchemy.com" \
+            "https://eth-mainnet.g.alchemy.com/nft/v3/docs-demo/getNFTsForOwner?owner=0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644&withMetadata=true&excludeFilters[]=SPAM&pageSize=100" \
+            -o data/wallet2.json
+
+      - name: Rebuild dataset + images
+        run: |
+          node data/process.js
+          node data/optimize-images.js
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Only stage the files we care about — don't accidentally pull in
+          # node_modules or any transient install artifacts.
+          git add -A data/wallet1.json data/wallet2.json nfts.json images/
+
+          if git diff --cached --quiet; then
+            echo "No changes. Nothing to commit."
+            exit 0
+          fi
+
+          # Summarize what changed for the commit message
+          changed=$(git diff --cached --name-only | head -8 | tr '\n' ' ')
+          git commit -m "Weekly refresh: snapshot updated ($(date -u +'%Y-%m-%d'))" \
+                     -m "Touched: ${changed}"
+          git push

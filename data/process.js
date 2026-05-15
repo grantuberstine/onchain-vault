@@ -175,7 +175,8 @@ async function download(url, destPathNoExt, label) {
   });
 
   const out = {
-    generatedAt: new Date().toISOString(),
+    // No timestamp here — git history is the source of truth for "when was
+    // this refreshed" and a per-run timestamp would noise up the diff.
     wallets: Object.keys(wallets),
     totalCount: nfts.length,
     featuredCount: nfts.filter(n => n.featured).length,
