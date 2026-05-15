@@ -75,22 +75,7 @@ button { font: inherit; cursor: pointer; }
   margin: 0 auto;
   padding: 18px clamp(20px, 4vw, 48px);
 }
-/* Extend the topbar background to the full viewport width — banner style
-   that visually flows into the sticky tabs below. */
-.topbar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(12, 12, 20, 0.72), rgba(12, 12, 20, 0.32));
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  z-index: -1;
-  pointer-events: none;
-}
+/* Topbar — fully transparent, brand and stat pills float on the animated bg. */
 .brand {
   display: flex; align-items: center; gap: 12px;
   font-family: 'Space Grotesk', sans-serif;
@@ -512,10 +497,11 @@ button { font: inherit; cursor: pointer; }
 .share-actions {
   display: flex;
   gap: 12px;
-  margin-top: 28px;
+  margin: 0 0 24px;
   flex-wrap: wrap;
 }
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -524,26 +510,52 @@ button { font: inherit; cursor: pointer; }
   border-radius: 14px;
   font-size: 15px;
   font-weight: 600;
-  border: 1px solid transparent;
-  transition: transform 0.2s, filter 0.2s, background 0.2s, border-color 0.2s;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  transition: transform 0.2s, background 0.2s, color 0.2s;
   cursor: pointer;
   font-family: inherit;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:focus { outline: none; }
+.btn:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
 }
 .btn[disabled] { opacity: 0.7; cursor: not-allowed; }
+
+/* Primary — gradient border around transparent body */
 .btn-primary {
-  background: var(--accent-grad);
-  color: #0a0a0a;
   flex: 1 1 280px;
-  box-shadow: 0 14px 40px -12px rgba(179, 136, 255, 0.55);
 }
-.btn-primary:hover:not([disabled]) { transform: translateY(-1px); filter: brightness(1.08); }
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.6px;
+  background: linear-gradient(135deg, #b388ff, #5ee0ff, #ff8ad8);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  transition: filter 0.2s;
+}
+.btn-primary:hover:not([disabled]) { background: rgba(179, 136, 255, 0.08); transform: translateY(-1px); }
+.btn-primary:hover:not([disabled])::before { filter: brightness(1.15); }
+
+/* Secondary — soft white border, transparent body */
 .btn-secondary {
-  background: var(--surface);
-  border-color: var(--border-strong);
-  color: var(--text);
   flex: 0 1 220px;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
 }
-.btn-secondary:hover:not([disabled]) { background: var(--surface-2); border-color: rgba(255,255,255,0.28); }
+.btn-secondary:hover:not([disabled]) {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
 .share-hint {
   margin: 14px 0 0;
   font-size: 13px;
