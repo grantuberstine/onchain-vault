@@ -1,0 +1,242 @@
+/* =========================================================
+   Wall view — multi-row horizontal parallax gallery
+   ========================================================= */
+
+.wall-stage {
+  position: relative;
+  width: 100%;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: var(--radius-l, 22px);
+  background:
+    radial-gradient(1100px 600px at 50% 50%, rgba(179, 136, 255, 0.08), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  cursor: grab;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+.wall-stage.is-grabbing { cursor: grabbing; }
+
+/* The track holds the rows; we stack them vertically and animate each row's transform individually */
+.wall-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(10px, 1.4vw, 18px);
+  padding: clamp(14px, 2vw, 24px) 0;
+}
+
+.wall-row {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: clamp(10px, 1.2vw, 16px);
+  height: clamp(140px, 18vw, 200px);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  /* Browser hint that this is its own paint layer */
+  contain: layout style;
+}
+
+/* Tiles — uniform squares for grid feel */
+.wall-tile {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(140px, 18vw, 200px);
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  cursor: pointer;
+  /* Transform & filter transitions for hover effect — fast, smooth */
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.85, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.85, 0.2, 1),
+    filter 0.3s ease,
+    border-color 0.3s ease;
+  /* Keep tiles from causing layout work during row pans */
+  will-change: transform, filter;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  /* Subtle inner glow at rest */
+  box-shadow:
+    0 6px 20px -6px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.wall-tile img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.2, 0.85, 0.2, 1), filter 0.3s ease;
+  /* Slight saturation lift to compensate for dim atmosphere */
+  filter: saturate(1.05);
+}
+
+/* Featured ring — subtle gradient border using a layered background */
+.wall-tile.featured {
+  border-color: transparent;
+  background:
+    linear-gradient(rgba(7,7,10,0.9), rgba(7,7,10,0.9)) padding-box,
+    linear-gradient(135deg, var(--accent, #b388ff) 0%, var(--accent-2, #5ee0ff) 50%, var(--accent-3, #ff8ad8) 100%) border-box;
+  border: 1.5px solid transparent;
+  box-shadow:
+    0 8px 28px -8px rgba(179, 136, 255, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Featured corner spark — tiny accent dot */
+.wall-tile.featured::after {
+  content: '';
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #b388ff);
+  box-shadow: 0 0 10px var(--accent, #b388ff);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Caption appears on hover */
+.wall-tile-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 12px 9px;
+  background: linear-gradient(180deg, transparent, rgba(7,7,10,0.92) 60%);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text, #f3f3f7);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.wall-tile-caption .col {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--accent-2, #5ee0ff);
+  margin-bottom: 2px;
+}
+
+/* Hover state: scale up, bring to front, brighten — neighbors dim via .is-dimmed */
+.wall-tile:hover,
+.wall-tile.is-hovered {
+  transform: translate3d(0, -4px, 0) scale(1.06);
+  z-index: 5;
+  border-color: var(--border-strong, rgba(255,255,255,0.16));
+  filter: brightness(1.08);
+  box-shadow:
+    0 22px 50px -10px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(179, 136, 255, 0.25);
+}
+.wall-tile.featured:hover,
+.wall-tile.featured.is-hovered {
+  box-shadow:
+    0 22px 50px -10px rgba(179, 136, 255, 0.5),
+    0 0 0 1px rgba(179, 136, 255, 0.45);
+}
+.wall-tile:hover img,
+.wall-tile.is-hovered img {
+  transform: scale(1.08);
+}
+
+.wall-tile.is-dimmed {
+  filter: brightness(0.55) saturate(0.85);
+}
+
+/* Edge vignettes — fade tiles into the background */
+.wall-edge {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: clamp(60px, 8vw, 130px);
+  pointer-events: none;
+  z-index: 4;
+}
+.wall-edge-left {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg, #07070a) 0%, rgba(7,7,10,0.85) 35%, rgba(7,7,10,0) 100%);
+}
+.wall-edge-right {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg, #07070a) 0%, rgba(7,7,10,0.85) 35%, rgba(7,7,10,0) 100%);
+}
+
+/* Hint chip — shows briefly to teach the interaction */
+.wall-hint {
+  position: absolute;
+  bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(7,7,10,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim, #a0a0b0);
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  animation: wall-hint-fade 5s ease forwards 0.4s;
+}
+.wall-hint-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent, #b388ff);
+  box-shadow: 0 0 8px var(--accent, #b388ff);
+}
+@keyframes wall-hint-fade {
+  0%   { opacity: 0; transform: translate(-50%, 10px); }
+  10%  { opacity: 1; transform: translate(-50%, 0); }
+  80%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 4px); }
+}
+
+/* Image-loading placeholder shimmer */
+.wall-tile.is-loading {
+  background: linear-gradient(110deg, rgba(255,255,255,0.04) 8%, rgba(255,255,255,0.10) 18%, rgba(255,255,255,0.04) 33%);
+  background-size: 200% 100%;
+  animation: wall-shimmer 1.6s linear infinite;
+}
+@keyframes wall-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Smaller screens — drop to 2 rows of slightly smaller tiles */
+@media (max-width: 720px) {
+  .wall-stage { min-height: 480px; }
+  .wall-row { height: clamp(110px, 30vw, 150px); gap: 8px; }
+  .wall-tile { width: clamp(110px, 30vw, 150px); border-radius: 12px; }
+  .wall-tile-caption { font-size: 10px; padding: 8px 10px 7px; }
+  .wall-hint { font-size: 10px; padding: 6px 11px; }
+}
+
+/* Reduced motion — disable the auto-pan but keep manual drag */
+@media (prefers-reduced-motion: reduce) {
+  .wall-tile, .wall-tile img { transition: none; }
+  .wall-row { will-change: auto; }
+}

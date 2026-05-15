@@ -1,9 +1,13 @@
 import * as THREE from 'three';
+import { initBackground } from './bg.js';
 
 // ---------- State ----------
 const state = {
   data: null,
   activeFilter: 'all',
+  activeTab: 'vault',
+  collageReady: false,
+  wallReady: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -11,6 +15,8 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
 // ---------- Boot ----------
 async function boot() {
+  initBackground($('#bg-canvas'));
+
   try {
     const res = await fetch('./nfts.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error(`Failed to load nfts.json (${res.status})`);
@@ -26,6 +32,7 @@ async function boot() {
   renderFilters(state.data);
   renderGrid(state.data.nfts);
   initModal();
+  initTabs();
 }
 
 function paintStats(data) {
@@ -33,17 +40,90 @@ function paintStats(data) {
   $('#stat-collections').textContent = data.collections.length;
 }
 
+// ---------- Tabs ----------
+function initTabs() {
+  $$('.tab').forEach((btn) => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+  $$('[data-tab-link]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab(a.dataset.tabLink);
+    });
+  });
+}
+
+async function switchTab(name) {
+  if (state.activeTab === name) return;
+  state.activeTab = name;
+
+  $$('.tab').forEach((t) => {
+    const on = t.dataset.tab === name;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+
+  $$('.view').forEach((v) => {
+    const on = v.id === name;
+    v.classList.toggle('active', on);
+    v.hidden = !on;
+  });
+
+  // Lazy load heavy view modules
+  if (name === 'collage' && !state.collageReady) {
+    try {
+      const mod = await import('./views/collage.js');
+      const canvas = $('#collage-canvas');
+      await mod.initCollage({ canvas, nfts: state.data.nfts });
+      mod.renderCollage('bento');
+      state.collageReady = true;
+      // Wire layout switcher
+      $$('.collage-controls .seg-btn').forEach((b) => {
+        b.addEventListener('click', () => {
+          $$('.collage-controls .seg-btn').forEach((x) => {
+            const on = x === b;
+            x.classList.toggle('active', on);
+            x.setAttribute('aria-checked', on ? 'true' : 'false');
+          });
+          mod.renderCollage(b.dataset.layout);
+        });
+      });
+      $('#dl-collage').addEventListener('click', () => mod.downloadCollage('bibbellydaddys-nfts.png'));
+    } catch (e) {
+      console.error('Collage view failed to load:', e);
+      $('#collage .collage-stage').innerHTML = `<div class="view-error">Collage view failed to load.</div>`;
+    }
+  }
+
+  if (name === 'wall' && !state.wallReady) {
+    try {
+      const mod = await import('./views/wall.js');
+      mod.initWall({
+        container: $('#wall-stage'),
+        nfts: state.data.nfts,
+        onTileClick: (nft) => openModal(nft),
+      });
+      state.wallReady = true;
+    } catch (e) {
+      console.error('Wall view failed to load:', e);
+      $('#wall .wall-stage').innerHTML = `<div class="view-error">Wall view failed to load.</div>`;
+    }
+  }
+
+  // Scroll into view nicely
+  const target = $(`#${name}`);
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // ---------- Three.js Hero Wall ----------
 function initHero(data) {
   const featured = data.nfts.filter((n) => n.featured);
-  // Fallback: if too few featured, pad with non-featured so the ring isn't sparse.
   const minRing = 14;
   let ringNfts = featured.slice();
   if (ringNfts.length < minRing) {
     const extras = data.nfts.filter((n) => !n.featured).slice(0, minRing - ringNfts.length);
     ringNfts = ringNfts.concat(extras);
   }
-  // Keep ring size reasonable
   ringNfts = ringNfts.slice(0, 22);
 
   const canvas = $('#hero-canvas');
@@ -60,7 +140,7 @@ function initHero(data) {
   camera.lookAt(0, 0, 0);
 
   // Subtle star particles
-  const starCount = 360;
+  const starCount = 420;
   const starPositions = new Float32Array(starCount * 3);
   for (let i = 0; i < starCount; i++) {
     starPositions[3 * i] = (Math.random() - 0.5) * 80;
@@ -73,7 +153,7 @@ function initHero(data) {
     color: 0xffffff,
     size: 0.045,
     transparent: true,
-    opacity: 0.55,
+    opacity: 0.5,
     sizeAttenuation: true,
   });
   const stars = new THREE.Points(starGeom, starMat);
@@ -82,7 +162,7 @@ function initHero(data) {
   // Ring of NFT cards — positioned below the title for visual hierarchy
   const ring = new THREE.Group();
   ring.position.y = -1.4;
-  ring.rotation.x = -0.12; // slight tilt — cards lean toward viewer
+  ring.rotation.x = -0.12;
   scene.add(ring);
 
   const radius = 7.0;
@@ -99,7 +179,7 @@ function initHero(data) {
     // Placeholder until texture loads
     const geom = new THREE.PlaneGeometry(2, cardHeight);
     const mat = new THREE.MeshBasicMaterial({
-      color: 0x1a1a22,
+      color: 0x12121a,
       transparent: true,
       opacity: 1,
       side: THREE.FrontSide,
@@ -117,24 +197,40 @@ function initHero(data) {
     ring.add(mesh);
     cards.push(mesh);
 
+    // Progressive load: thumb first (fast), then full-res (crisp)
     loader.load(
       nft.thumb || nft.image,
-      (tex) => {
-        tex.colorSpace = THREE.SRGBColorSpace;
-        tex.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
-        const w = tex.image?.naturalWidth || tex.image?.width || 1;
-        const h = tex.image?.naturalHeight || tex.image?.height || 1;
+      (thumbTex) => {
+        thumbTex.colorSpace = THREE.SRGBColorSpace;
+        thumbTex.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
+        const w = thumbTex.image?.naturalWidth || thumbTex.image?.width || 1;
+        const h = thumbTex.image?.naturalHeight || thumbTex.image?.height || 1;
         const aspect = w / h;
         mesh.geometry.dispose();
         mesh.geometry = new THREE.PlaneGeometry(cardHeight * aspect, cardHeight);
         mesh.material.dispose();
-        mesh.material = new THREE.MeshBasicMaterial({ map: tex, side: THREE.FrontSide });
-        mesh.material.color = new THREE.Color(0xffffff);
+        mesh.material = new THREE.MeshBasicMaterial({ map: thumbTex, side: THREE.FrontSide });
 
         loadedCount++;
         if (loadedCount >= Math.ceil(ringNfts.length * 0.6)) {
           $('#hero-loading').classList.add('hidden');
         }
+
+        // Now upgrade to high-res in background
+        loader.load(
+          nft.image,
+          (fullTex) => {
+            fullTex.colorSpace = THREE.SRGBColorSpace;
+            fullTex.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 16);
+            const old = mesh.material;
+            mesh.material = new THREE.MeshBasicMaterial({ map: fullTex, side: THREE.FrontSide });
+            // Dispose old texture and material
+            if (old.map && old.map !== fullTex) old.map.dispose();
+            old.dispose();
+          },
+          undefined,
+          () => {/* keep thumb if high-res fails */}
+        );
       },
       undefined,
       (err) => {
@@ -144,8 +240,7 @@ function initHero(data) {
     );
   });
 
-  // Safety: hide loading after 3.5s no matter what
-  setTimeout(() => $('#hero-loading').classList.add('hidden'), 3500);
+  setTimeout(() => $('#hero-loading').classList.add('hidden'), 4000);
 
   // ---------- Resize ----------
   function resize() {
@@ -153,7 +248,6 @@ function initHero(data) {
     const h = heroEl.clientHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    // Pull camera back more on portrait/small viewports so the ring still fits
     if (w < 720) camera.position.z = 16;
     else if (w / h < 1.4) camera.position.z = 15;
     else camera.position.z = 13;
@@ -162,7 +256,7 @@ function initHero(data) {
   resize();
   window.addEventListener('resize', resize);
 
-  // ---------- Interaction: drag to rotate, click to open ----------
+  // ---------- Interaction ----------
   let dragging = false;
   let dragVel = 0;
   let lastX = 0;
@@ -203,7 +297,6 @@ function initHero(data) {
       lastX = e.clientX;
       if (Math.abs(e.clientX - downX) > 8) didDrag = true;
     } else {
-      // Hover highlight
       const hit = pick(e.clientX, e.clientY);
       if (hit !== hoverCard) {
         hoverCard = hit;
@@ -225,30 +318,27 @@ function initHero(data) {
   }
   canvas.addEventListener('pointerup', endDrag);
   canvas.addEventListener('pointercancel', endDrag);
-  canvas.addEventListener('pointerleave', () => {
-    if (dragging) { dragging = false; }
-  });
+  canvas.addEventListener('pointerleave', () => { if (dragging) dragging = false; });
 
   // ---------- Animation loop ----------
   const clock = new THREE.Clock();
+  // Faster idle rotation than before — feels alive
+  const IDLE_SPIN = 0.0042;
+
   function tick() {
     const t = clock.getElapsedTime();
     if (!dragging) {
-      // Idle auto-rotation + decay of any flick velocity
-      ring.rotation.y += dragVel || 0.0018;
+      ring.rotation.y += dragVel || IDLE_SPIN;
       dragVel *= 0.93;
     }
 
-    // Per-card subtle float + hover scale
     cards.forEach((m) => {
-      m.position.y = Math.sin(t * 0.9 + m.userData.phase) * 0.08;
+      m.position.y = Math.sin(t * 0.9 + m.userData.phase) * 0.09;
       const target = (m === hoverCard) ? 1.08 : 1.0;
       m.userData.hover += (target - m.userData.hover) * 0.12;
-      const s = 1 + m.userData.hover - 1; // = m.userData.hover
-      m.scale.set(s, s, s);
+      m.scale.set(m.userData.hover, m.userData.hover, m.userData.hover);
     });
 
-    // Stars: slow drift
     stars.rotation.y = t * 0.02;
 
     renderer.render(scene, camera);
@@ -323,15 +413,12 @@ function renderGrid(nfts) {
     const card = e.target.closest('.card');
     if (!card) return;
     const nft = JSON.parse(card.dataset.nft);
-    // Re-hydrate full nft from state by id
     const full = state.data.nfts.find((n) => n.id === nft.id) || nft;
     openModal(full);
   });
 }
 
 function slimNft(n) {
-  // We embed a tiny subset on the data attr to keep DOM size sane;
-  // full NFT looked up by id at click time.
   return { id: n.id, featured: n.featured, collection: n.collection, wallet: n.wallet };
 }
 
