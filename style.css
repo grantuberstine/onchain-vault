@@ -198,17 +198,19 @@ button { font: inherit; cursor: pointer; }
   gap: 4px;
   padding: 14px 18px;
   border-radius: var(--radius-m);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(20, 20, 28, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text);
   transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
   text-align: left;
   cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .tab:hover {
   color: var(--text);
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(28, 28, 38, 0.86);
   transform: translateY(-1px);
 }
 .tab.active {
@@ -217,7 +219,10 @@ button { font: inherit; cursor: pointer; }
   color: var(--text);
   box-shadow: 0 0 0 1px rgba(179,136,255,0.28), 0 8px 30px -10px rgba(179,136,255,0.5);
 }
-.tab .tab-label { color: var(--text); }
+.tab .tab-label {
+  color: #ffffff;
+  font-weight: 700;
+}
 .tab .tab-icon {
   font-size: 18px;
   line-height: 1;
@@ -237,12 +242,12 @@ button { font: inherit; cursor: pointer; }
   letter-spacing: -0.005em;
 }
 .tab .tab-meta {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.92);
   letter-spacing: 0.01em;
   font-weight: 500;
 }
-.tab.active .tab-meta { color: var(--text); }
+.tab.active .tab-meta { color: #ffffff; }
 @media (max-width: 640px) {
   .tabs { padding: 10px 14px; gap: 4px; }
   .tab { padding: 10px 12px; }
