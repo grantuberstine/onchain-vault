@@ -17,11 +17,27 @@ const state = {
   others: [],
   images: new Map(),       // id -> HTMLImageElement (loaded)
   layout: 'bento',
+  variant: 0,              // cycles per shuffle — each layout has 2-3 variants
+  shuffleSeed: 0xC0FFEE,   // RNG seed (mosaic uses this; bento uses it for queue order)
   ready: false,
   rafId: 0,
   resizeTimer: 0,
   onLayoutChange: null,
 };
+
+// Tiny seeded shuffle used by bento/grid to re-order the NFT queue.
+function seededShuffle(arr, seed) {
+  const out = arr.slice();
+  let s = seed | 0;
+  for (let i = out.length - 1; i > 0; i--) {
+    s = Math.imul(s ^ (s >>> 15), 0x85EBCA77) | 0;
+    s = Math.imul(s ^ (s >>> 13), 0xC2B2AE3D) | 0;
+    s ^= s >>> 16;
+    const j = (s >>> 0) % (i + 1);
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
 
 // Internal canvas resolution. We render at this size for crisp downloads
 // and let CSS scale the element responsively.
@@ -77,7 +93,10 @@ export async function initCollage(opts) {
 
 export function renderCollage(layout) {
   if (!state.ready) return;
-  if (layout && layout !== state.layout) state.layout = layout;
+  if (layout && layout !== state.layout) {
+    state.layout = layout;
+    state.variant = 0; // reset variant when user picks a new layout
+  }
   cancelAnimationFrame(state.rafId);
   state.rafId = requestAnimationFrame(() => {
     const res = RES[state.layout] || RES.bento;
@@ -97,6 +116,14 @@ export function setCollageNfts(nfts) {
   state.nfts = Array.isArray(nfts) ? nfts.slice() : [];
   state.featured = state.nfts.filter((n) => n.featured);
   state.others = state.nfts.filter((n) => !n.featured);
+}
+
+// Cycle to the next variant of the current layout (different cell plan,
+// column count, or RNG seed depending on the layout). Renders immediately.
+export function shuffleCollage() {
+  state.variant += 1;
+  state.shuffleSeed = (Math.imul(state.shuffleSeed, 1664525) + 1013904223) | 0;
+  renderCollage(state.layout);
 }
 
 // Async export to PNG Blob — useful for Web Share API.
@@ -318,39 +345,57 @@ function drawBento(w, h) {
   // Reserve some bottom rows for the title scrim — paint art into rows 0..6 (full)
   // and row 7 will be partly covered by the gradient scrim — that's fine.
 
-  // Build a curated tile plan. Pattern carefully tuned so:
-  //   - 4 big "hero" tiles (3x3) anchor the composition
-  //   - several medium 2x2 and 2x3 tiles
-  //   - the rest is 1x1 fill
-  // Tiles are { col, row, cw, ch } where cw/ch are in grid cells.
-  const plan = [
-    // Top-left hero (3x3)
-    { col: 0,  row: 0, cw: 3, ch: 3 },
-    // Top-mid wide hero (3x3)
-    { col: 3,  row: 0, cw: 3, ch: 3 },
-    // Top-right tall (3x4)
-    { col: 9,  row: 0, cw: 3, ch: 4 },
-    // Middle-right (3x3)
-    { col: 6,  row: 0, cw: 3, ch: 3 },
-    // Middle band: 2x2 features
-    { col: 0,  row: 3, cw: 2, ch: 2 },
-    { col: 2,  row: 3, cw: 2, ch: 2 },
-    { col: 4,  row: 3, cw: 3, ch: 2 },
-    { col: 7,  row: 3, cw: 2, ch: 2 },
-    // Right column continues
-    { col: 9,  row: 4, cw: 3, ch: 2 },
-    // Lower band: 2x3 large vertical
-    { col: 0,  row: 5, cw: 3, ch: 3 },
-    { col: 3,  row: 5, cw: 2, ch: 2 },
-    { col: 5,  row: 5, cw: 2, ch: 3 },
-    { col: 7,  row: 5, cw: 2, ch: 2 },
-    { col: 9,  row: 6, cw: 3, ch: 2 },
-    // Fill row 7 small cells under the medium tiles
-    { col: 3,  row: 7, cw: 1, ch: 1 },
-    { col: 4,  row: 7, cw: 1, ch: 1 },
-    { col: 7,  row: 7, cw: 1, ch: 1 },
-    { col: 8,  row: 7, cw: 1, ch: 1 },
+  // Multiple curated tile plans — Shuffle rotates through these for variety.
+  // Tiles are { col, row, cw, ch } in 12x8 grid cells.
+  const PLANS = [
+    // PLAN A — "Editorial" — 4 hero tiles balanced across the frame (original)
+    [
+      { col: 0, row: 0, cw: 3, ch: 3 }, { col: 3, row: 0, cw: 3, ch: 3 },
+      { col: 9, row: 0, cw: 3, ch: 4 }, { col: 6, row: 0, cw: 3, ch: 3 },
+      { col: 0, row: 3, cw: 2, ch: 2 }, { col: 2, row: 3, cw: 2, ch: 2 },
+      { col: 4, row: 3, cw: 3, ch: 2 }, { col: 7, row: 3, cw: 2, ch: 2 },
+      { col: 9, row: 4, cw: 3, ch: 2 },
+      { col: 0, row: 5, cw: 3, ch: 3 }, { col: 3, row: 5, cw: 2, ch: 2 },
+      { col: 5, row: 5, cw: 2, ch: 3 }, { col: 7, row: 5, cw: 2, ch: 2 },
+      { col: 9, row: 6, cw: 3, ch: 2 },
+      { col: 3, row: 7, cw: 1, ch: 1 }, { col: 4, row: 7, cw: 1, ch: 1 },
+      { col: 7, row: 7, cw: 1, ch: 1 }, { col: 8, row: 7, cw: 1, ch: 1 },
+    ],
+    // PLAN B — "Magazine cover" — one huge hero left + grid right
+    [
+      { col: 0, row: 0, cw: 6, ch: 6 }, // big hero
+      { col: 6, row: 0, cw: 3, ch: 3 }, { col: 9, row: 0, cw: 3, ch: 3 },
+      { col: 6, row: 3, cw: 2, ch: 2 }, { col: 8, row: 3, cw: 2, ch: 2 },
+      { col: 10, row: 3, cw: 2, ch: 2 },
+      { col: 0, row: 6, cw: 3, ch: 2 }, { col: 3, row: 6, cw: 3, ch: 2 },
+      { col: 6, row: 5, cw: 3, ch: 3 }, { col: 9, row: 5, cw: 3, ch: 3 },
+      { col: 0, row: 6, cw: 2, ch: 2 }, { col: 2, row: 6, cw: 2, ch: 2 },
+      { col: 4, row: 6, cw: 2, ch: 2 },
+    ],
+    // PLAN C — "Pinterest" — stacked verticals with offset row of small fillers
+    [
+      { col: 0, row: 0, cw: 3, ch: 4 }, { col: 3, row: 0, cw: 3, ch: 5 },
+      { col: 6, row: 0, cw: 3, ch: 3 }, { col: 9, row: 0, cw: 3, ch: 4 },
+      { col: 6, row: 3, cw: 3, ch: 4 }, { col: 9, row: 4, cw: 3, ch: 3 },
+      { col: 0, row: 4, cw: 3, ch: 4 }, { col: 3, row: 5, cw: 3, ch: 3 },
+      { col: 0, row: 6, cw: 1, ch: 2 }, { col: 1, row: 6, cw: 1, ch: 2 },
+      { col: 2, row: 6, cw: 1, ch: 2 }, { col: 6, row: 7, cw: 1, ch: 1 },
+      { col: 7, row: 7, cw: 1, ch: 1 }, { col: 8, row: 7, cw: 1, ch: 1 },
+      { col: 9, row: 7, cw: 1, ch: 1 }, { col: 10, row: 7, cw: 1, ch: 1 },
+      { col: 11, row: 7, cw: 1, ch: 1 },
+    ],
+    // PLAN D — "Bands" — three horizontal bands (large / medium / small)
+    [
+      { col: 0, row: 0, cw: 4, ch: 3 }, { col: 4, row: 0, cw: 4, ch: 3 },
+      { col: 8, row: 0, cw: 4, ch: 3 },
+      { col: 0, row: 3, cw: 3, ch: 2 }, { col: 3, row: 3, cw: 3, ch: 2 },
+      { col: 6, row: 3, cw: 3, ch: 2 }, { col: 9, row: 3, cw: 3, ch: 2 },
+      { col: 0, row: 5, cw: 2, ch: 3 }, { col: 2, row: 5, cw: 2, ch: 3 },
+      { col: 4, row: 5, cw: 2, ch: 3 }, { col: 6, row: 5, cw: 2, ch: 3 },
+      { col: 8, row: 5, cw: 2, ch: 3 }, { col: 10, row: 5, cw: 2, ch: 3 },
+    ],
   ];
+  const plan = PLANS[state.variant % PLANS.length];
 
   // Choose images: sort featured first by collection priority, then non-featured fill
   const priority = [
@@ -366,12 +411,19 @@ function drawBento(w, h) {
     'fwogs',
     'KILLABITS',
   ];
-  const featuredSorted = state.featured.slice().sort((a, b) => {
+  const featuredByPriority = state.featured.slice().sort((a, b) => {
     const ai = priority.indexOf(a.collection);
     const bi = priority.indexOf(b.collection);
     return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
   });
-  const fillSorted = state.others.slice().sort(() => 0); // keep input order, looks more organic
+  // First shuffle is identity (variant 0); subsequent shuffles re-order so
+  // different featured pieces land in big tiles.
+  const featuredSorted = state.variant > 0
+    ? seededShuffle(featuredByPriority, state.shuffleSeed)
+    : featuredByPriority;
+  const fillSorted = state.variant > 0
+    ? seededShuffle(state.others, state.shuffleSeed + 17)
+    : state.others.slice();
   const queue = featuredSorted.concat(fillSorted);
 
   // Sort plan by cell area, biggest first, so big tiles get the hero pieces
@@ -408,11 +460,13 @@ function drawGrid(w, h) {
   const gutter = Math.round(w * 0.0035);
 
   const count = state.nfts.length;
-  // Aim for a roughly 8x8 grid for 63 items
-  let cols;
-  if (count <= 36) cols = 6;
-  else if (count <= 56) cols = 8;
-  else cols = 9;
+  // Three column variants — Shuffle rotates between them.
+  // Default (variant 0) auto-picks based on count; others force chunky/dense.
+  const autoCol = count <= 36 ? 6 : count <= 56 ? 8 : 9;
+  const variants = [autoCol, Math.max(4, autoCol - 2), Math.min(12, autoCol + 2)];
+  let cols = variants[state.variant % variants.length];
+  // Don't render more cols than items — looks weird
+  cols = Math.min(cols, Math.max(2, count));
   const rows = Math.ceil(count / cols);
 
   const innerW = w - margin * 2;
@@ -474,8 +528,9 @@ function drawMosaic(w, h) {
   const featured = state.featured.slice();
   const others = state.others.slice();
 
-  // Seeded RNG so each render is identical (no flicker on resize)
-  const rand = mulberry32(0xC0FFEE);
+  // Seeded RNG — variant 0 uses a fixed seed for stability across resizes;
+  // each Shuffle press cycles to a new seed for a different scatter.
+  const rand = mulberry32(state.variant === 0 ? 0xC0FFEE : (state.shuffleSeed >>> 0));
 
   // Place featured (large) tiles in a loose ring near the centre
   const featuredCount = featured.length;
