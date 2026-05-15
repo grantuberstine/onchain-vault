@@ -112,9 +112,19 @@ async function initShareView() {
   $('#download-image').addEventListener('click', () => collageMod.downloadCollage(currentFilename()));
 
   // Hint text varies by capability
-  if (!navigator.canShare || !navigator.canShare({ files: [new File([new Blob()], 'x.png', { type: 'image/png' })] })) {
+  if (!canUseNativeShare()) {
     $('#share-hint').textContent = 'Click Save image to download the PNG, then drop it anywhere.';
   }
+}
+
+// Web Share works best on real touch devices. On desktop Chrome it pops a
+// system share dialog that's clunky for image saving — so only use it on
+// actual phones/tablets and fall back to download elsewhere.
+function canUseNativeShare() {
+  if (!navigator.canShare || !navigator.share) return false;
+  const isTouchPrimary = matchMedia('(pointer: coarse)').matches;
+  const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  return isTouchPrimary || isMobileUA;
 }
 
 function renderShareFilters() {
@@ -191,7 +201,7 @@ async function saveImage() {
     if (!blob) throw new Error('Failed to render');
     const file = new File([blob], currentFilename(), { type: 'image/png' });
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    if (canUseNativeShare() && navigator.canShare({ files: [file] })) {
       try {
         await navigator.share({
           files: [file],
