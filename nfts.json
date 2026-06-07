@@ -3,7 +3,7 @@
     "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
     "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644"
   ],
-  "totalCount": 63,
+  "totalCount": 64,
   "featuredCount": 20,
   "collections": [
     {
@@ -68,6 +68,10 @@
     },
     {
       "name": "BitKings",
+      "count": 1
+    },
+    {
+      "name": "Chimpers Chronicles",
       "count": 1
     },
     {
@@ -423,6 +427,22 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0x252458DC2BC032192D714F3E67ACF1a3bFDF6f82/241"
+    },
+    {
+      "id": "0x7cc7add921e2222738561d03c89589929cefcf21_23",
+      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
+      "walletShort": "0x28f6…e644",
+      "name": "Evolution Dust",
+      "collection": "Chimpers Chronicles",
+      "collectionSlug": "chimperschronicles",
+      "contract": "0x7cC7ADd921e2222738561D03c89589929ceFcF21",
+      "tokenId": "23",
+      "image": "images/0x7cc7add921e2222738561d03c89589929cefcf21_23.png",
+      "thumb": "images/thumb/0x7cc7add921e2222738561d03c89589929cefcf21_23.jpg",
+      "description": "A mysterious dust left behind after a Chimp evolution, preserved as a rare memento of transformation and awakening.",
+      "tokenType": "ERC1155",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x7cC7ADd921e2222738561D03c89589929ceFcF21/23"
     },
     {
       "id": "0xa323ddb41be22a32ce3c6cdc8caf3f9ede3b315a_165",
