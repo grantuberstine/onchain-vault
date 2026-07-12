@@ -8,7 +8,7 @@
   "collections": [
     {
       "name": "Good Vibes Club",
-      "count": 36
+      "count": 35
     },
     {
       "name": "KILLABEARS",
@@ -80,6 +80,10 @@
     },
     {
       "name": "ENS: Ethereum Name Service",
+      "count": 1
+    },
+    {
+      "name": "NORMIES",
       "count": 1
     },
     {
@@ -182,7 +186,7 @@
       "contract": "0x8fe1a377B83921fe1429aDB1b8fbFECd45De9cd8",
       "tokenId": "5274",
       "image": "images/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.png",
-      "thumb": "images/thumb/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.png",
+      "thumb": "images/thumb/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.jpg",
       "description": "Wut The Fwog",
       "tokenType": "ERC721",
       "featured": true,
@@ -278,7 +282,7 @@
       "contract": "0x64a1C0937728d8d2fA8Cd81Ef61a9c860B7362Db",
       "tokenId": "1228",
       "image": "images/0x64a1c0937728d8d2fa8cd81ef61a9c860b7362db_1228.png",
-      "thumb": "images/thumb/0x64a1c0937728d8d2fa8cd81ef61a9c860b7362db_1228.png",
+      "thumb": "images/thumb/0x64a1c0937728d8d2fa8cd81ef61a9c860b7362db_1228.jpg",
       "description": "KillaBit — anti-Vorian defense drone designed by Dr. Fomo. Native agent identity from the Primal Verse.",
       "tokenType": "ERC721",
       "featured": true,
@@ -310,7 +314,7 @@
       "contract": "0x524cAB2ec69124574082676e6F654a18df49A048",
       "tokenId": "11444",
       "image": "images/0x524cab2ec69124574082676e6f654a18df49a048_11444.png",
-      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_11444.jpg",
+      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_11444.png",
       "description": "Lil Pudgys are a collection of 22,222 randomly generated NFTs minted on Ethereum.",
       "tokenType": "ERC721",
       "featured": true,
@@ -813,22 +817,6 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3269"
     },
     {
-      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3368",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "Citizen of Vibetown #3368",
-      "collection": "Good Vibes Club",
-      "collectionSlug": "good-vibes-club",
-      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
-      "tokenId": "3368",
-      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3368.jpg",
-      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3368.jpg",
-      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3368"
-    },
-    {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3464",
       "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
       "walletShort": "0x3ed0…339a",
@@ -1083,6 +1071,22 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/6420"
+    },
+    {
+      "id": "0x9eb6e2025b64f340691e424b7fe7022ffde12438_3291",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Normie #3291",
+      "collection": "NORMIES",
+      "collectionSlug": "normies",
+      "contract": "0x9Eb6E2025B64f340691e424b7fe7022fFDE12438",
+      "tokenId": "3291",
+      "image": "images/0x9eb6e2025b64f340691e424b7fe7022ffde12438_3291.svg",
+      "thumb": "images/thumb/0x9eb6e2025b64f340691e424b7fe7022ffde12438_3291.jpg",
+      "description": "10,000 fully on-chain, CC0, generative faces. Humans, cats, agents and also aliens.",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x9Eb6E2025B64f340691e424b7fe7022fFDE12438/3291"
     },
     {
       "id": "0x5b12e009e1b5f14b1e8f3a3b9fb3ca165702dcbd_1032",
