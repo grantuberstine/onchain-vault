@@ -3,12 +3,12 @@
     "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
     "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644"
   ],
-  "totalCount": 66,
-  "featuredCount": 20,
+  "totalCount": 62,
+  "featuredCount": 15,
   "collections": [
     {
       "name": "Good Vibes Club",
-      "count": 37
+      "count": 36
     },
     {
       "name": "KILLABEARS",
@@ -19,20 +19,20 @@
       "count": 3
     },
     {
-      "name": "Bored Ape Yacht Club",
-      "count": 2
-    },
-    {
-      "name": "Invisible Friends",
-      "count": 2
-    },
-    {
       "name": "Pudgy Penguins",
       "count": 2
     },
     {
       "name": "Digital Slop",
       "count": 2
+    },
+    {
+      "name": "OK DEGEN",
+      "count": 2
+    },
+    {
+      "name": "Bored Ape Yacht Club",
+      "count": 1
     },
     {
       "name": "Chimpers",
@@ -55,15 +55,7 @@
       "count": 1
     },
     {
-      "name": "RENGA",
-      "count": 1
-    },
-    {
       "name": "Street Trash",
-      "count": 1
-    },
-    {
-      "name": "VeeFriends Series 2",
       "count": 1
     },
     {
@@ -111,22 +103,6 @@
       "tokenType": "ERC721",
       "featured": true,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D/3056"
-    },
-    {
-      "id": "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d_7360",
-      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
-      "walletShort": "0x28f6…e644",
-      "name": "Bored Ape Yacht Club #7360",
-      "collection": "Bored Ape Yacht Club",
-      "collectionSlug": "boredapeyachtclub",
-      "contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
-      "tokenId": "7360",
-      "image": "images/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d_7360.png",
-      "thumb": "images/thumb/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d_7360.png",
-      "description": "The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain. Your Bored Ape doubles as your Yacht Club membership card, and grants access to members-only benefits, the first of which is access to THE BATHROOM, a collaborative graffiti board. Future areas and perks can be unlocked by the community through roadmap activation",
-      "tokenType": "ERC721",
-      "featured": true,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D/7360"
     },
     {
       "id": "0x307af7d28afee82092aa95d35644898311ca5360_3088",
@@ -182,47 +158,15 @@
       "walletShort": "0x28f6…e644",
       "name": "Fwog #5274",
       "collection": "fwogs",
-      "collectionSlug": "fwogs",
+      "collectionSlug": "",
       "contract": "0x8fe1a377B83921fe1429aDB1b8fbFECd45De9cd8",
       "tokenId": "5274",
       "image": "images/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.png",
-      "thumb": "images/thumb/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.jpg",
+      "thumb": "images/thumb/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.png",
       "description": "Wut The Fwog",
       "tokenType": "ERC721",
       "featured": true,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0x8fe1a377B83921fe1429aDB1b8fbFECd45De9cd8/5274"
-    },
-    {
-      "id": "0x59468516a8259058bad1ca5f8f4bff190d30e066_3323",
-      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
-      "walletShort": "0x28f6…e644",
-      "name": "Invisible Friends #3323",
-      "collection": "Invisible Friends",
-      "collectionSlug": "invisiblefriends",
-      "contract": "0x59468516a8259058baD1cA5F8f4BFF190d30E066",
-      "tokenId": "3323",
-      "image": "images/0x59468516a8259058bad1ca5f8f4bff190d30e066_3323.gif",
-      "thumb": "images/thumb/0x59468516a8259058bad1ca5f8f4bff190d30e066_3323.jpg",
-      "description": "5,000 animated Invisible Friends hiding in the metaverse. A collection by Markus Magnusson & Random Character Collective.",
-      "tokenType": "ERC721",
-      "featured": true,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x59468516a8259058baD1cA5F8f4BFF190d30E066/3323"
-    },
-    {
-      "id": "0x59468516a8259058bad1ca5f8f4bff190d30e066_3695",
-      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
-      "walletShort": "0x28f6…e644",
-      "name": "Invisible Friends #3695",
-      "collection": "Invisible Friends",
-      "collectionSlug": "invisiblefriends",
-      "contract": "0x59468516a8259058baD1cA5F8f4BFF190d30E066",
-      "tokenId": "3695",
-      "image": "images/0x59468516a8259058bad1ca5f8f4bff190d30e066_3695.gif",
-      "thumb": "images/thumb/0x59468516a8259058bad1ca5f8f4bff190d30e066_3695.jpg",
-      "description": "5,000 animated Invisible Friends hiding in the metaverse. A collection by Markus Magnusson & Random Character Collective.",
-      "tokenType": "ERC721",
-      "featured": true,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x59468516a8259058baD1cA5F8f4BFF190d30E066/3695"
     },
     {
       "id": "0xc99c679c50033bbc5321eb88752e89a93e9e83c5_876",
@@ -298,7 +242,7 @@
       "contract": "0x524cAB2ec69124574082676e6F654a18df49A048",
       "tokenId": "8612",
       "image": "images/0x524cab2ec69124574082676e6f654a18df49a048_8612.png",
-      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_8612.jpg",
+      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_8612.png",
       "description": "Lil Pudgys are a collection of 22,222 randomly generated NFTs minted on Ethereum.",
       "tokenType": "ERC721",
       "featured": true,
@@ -314,7 +258,7 @@
       "contract": "0x524cAB2ec69124574082676e6F654a18df49A048",
       "tokenId": "11444",
       "image": "images/0x524cab2ec69124574082676e6f654a18df49a048_11444.png",
-      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_11444.jpg",
+      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_11444.png",
       "description": "Lil Pudgys are a collection of 22,222 randomly generated NFTs minted on Ethereum.",
       "tokenType": "ERC721",
       "featured": true,
@@ -330,7 +274,7 @@
       "contract": "0x524cAB2ec69124574082676e6F654a18df49A048",
       "tokenId": "13384",
       "image": "images/0x524cab2ec69124574082676e6f654a18df49a048_13384.png",
-      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_13384.jpg",
+      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_13384.png",
       "description": "Lil Pudgys are a collection of 22,222 randomly generated NFTs minted on Ethereum.",
       "tokenType": "ERC721",
       "featured": true,
@@ -369,22 +313,6 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xBd3531dA5CF5857e7CfAA92426877b022e612cf8/4393"
     },
     {
-      "id": "0x394e3d3044fc89fcdd966d3cb35ac0b32b0cda91_7053",
-      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
-      "walletShort": "0x28f6…e644",
-      "name": "RENGA #7053",
-      "collection": "RENGA",
-      "collectionSlug": "renga",
-      "contract": "0x394E3d3044fC89fCDd966D3cb35Ac0B32B0Cda91",
-      "tokenId": "7053",
-      "image": "images/0x394e3d3044fc89fcdd966d3cb35ac0b32b0cda91_7053.jpg",
-      "thumb": "images/thumb/0x394e3d3044fc89fcdd966d3cb35ac0b32b0cda91_7053.jpg",
-      "description": "A handcrafted collection of 10,000 characters developed by artist DirtyRobot. Each with their own identity to be discovered within the wider stories of RENGA. In its purest form, RENGA is the art of storytelling. Visit our [website](https://renga.app/) for more details.",
-      "tokenType": "ERC721",
-      "featured": true,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x394E3d3044fC89fCDd966D3cb35Ac0B32B0Cda91/7053"
-    },
-    {
       "id": "0xcbc978506a604036e2df13063103329ab5cda439_206",
       "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
       "walletShort": "0x3ed0…339a",
@@ -399,22 +327,6 @@
       "tokenType": "ERC721",
       "featured": true,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xcbC978506A604036E2Df13063103329Ab5cDa439/206"
-    },
-    {
-      "id": "0x9378368ba6b85c1fba5b131b530f5f5bedf21a18_43783",
-      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
-      "walletShort": "0x28f6…e644",
-      "name": "\"Content\" Condor #43783",
-      "collection": "VeeFriends Series 2",
-      "collectionSlug": "veefriends-series-2",
-      "contract": "0x9378368ba6b85c1FbA5b131b530f5F5bEdf21A18",
-      "tokenId": "43783",
-      "image": "images/0x9378368ba6b85c1fba5b131b530f5f5bedf21a18_43783.png",
-      "thumb": "images/thumb/0x9378368ba6b85c1fba5b131b530f5f5bedf21a18_43783.png",
-      "description": "VeeFriends Series 2 is a collection of 55,555 tokens created using combinations of 251 VeeFriends characters, 68 backgrounds, and 8 unique poses to create a collection comprised entirely of unique one-of-one NFTs.\r\n\r\nThe collection features 236 original characters from VeeFriends Series 1 and 15 new characters created only in Series 2. The original hand-drawn VeeFriends characters have now evolved",
-      "tokenType": "ERC721",
-      "featured": true,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x9378368ba6b85c1FbA5b131b530f5F5bEdf21A18/43783"
     },
     {
       "id": "0x252458dc2bc032192d714f3e67acf1a3bfdf6f82_241",
@@ -490,7 +402,7 @@
       "contract": "0x0ae671a34935151C2de2E2e185d0C2DbDFe0645C",
       "tokenId": "7360",
       "image": "images/0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7360.png",
-      "thumb": "images/thumb/0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7360.jpg",
+      "thumb": "images/thumb/0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7360.png",
       "description": "Digital Slops is a 10K Collection of Cartoon Avatars depicting the slops staring in front of the screen. Sloppy in real life and Keyboard warriors in the digital world.",
       "tokenType": "ERC721",
       "featured": false,
@@ -673,22 +585,6 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/1333"
     },
     {
-      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_1409",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "Citizen of Vibetown #1409",
-      "collection": "Good Vibes Club",
-      "collectionSlug": "good-vibes-club",
-      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
-      "tokenId": "1409",
-      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_1409.jpg",
-      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_1409.jpg",
-      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/1409"
-    },
-    {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_1669",
       "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
       "walletShort": "0x28f6…e644",
@@ -801,22 +697,6 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3464"
     },
     {
-      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3594",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "Citizen of Vibetown #3594",
-      "collection": "Good Vibes Club",
-      "collectionSlug": "good-vibes-club",
-      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
-      "tokenId": "3594",
-      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3594.jpg",
-      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3594.jpg",
-      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3594"
-    },
-    {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3816",
       "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
       "walletShort": "0x3ed0…339a",
@@ -911,6 +791,22 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/4608"
+    },
+    {
+      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4901",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Citizen of Vibetown #4901",
+      "collection": "Good Vibes Club",
+      "collectionSlug": "good-vibes-club",
+      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
+      "tokenId": "4901",
+      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4901.jpg",
+      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4901.jpg",
+      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/4901"
     },
     {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_5167",
@@ -1135,6 +1031,38 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0x5B12e009e1b5f14b1E8F3A3b9Fb3Ca165702dCbD/1032"
+    },
+    {
+      "id": "0xe35b30ddae43e686c88ea8c04a5d420879d9284b_3570",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "OkDegen #3570",
+      "collection": "OK DEGEN",
+      "collectionSlug": "ok-degen-799266709",
+      "contract": "0xE35b30DDaE43e686C88EA8c04a5D420879d9284b",
+      "tokenId": "3570",
+      "image": "images/0xe35b30ddae43e686c88ea8c04a5d420879d9284b_3570.png",
+      "thumb": "images/thumb/0xe35b30ddae43e686c88ea8c04a5d420879d9284b_3570.jpg",
+      "description": "OK DEGEN — the NFT that whispers in your ear: “one more day… what’s the worst that could happen?” Spoiler: a lot. But we hold. Join us. Follow. Hold. Rot together. LFG. Or don’t. We’ll just assume you rage-quit like a normie. okdegen 👌",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xE35b30DDaE43e686C88EA8c04a5D420879d9284b/3570"
+    },
+    {
+      "id": "0xe35b30ddae43e686c88ea8c04a5d420879d9284b_6895",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "OkDegen #6895",
+      "collection": "OK DEGEN",
+      "collectionSlug": "ok-degen-799266709",
+      "contract": "0xE35b30DDaE43e686C88EA8c04a5D420879d9284b",
+      "tokenId": "6895",
+      "image": "images/0xe35b30ddae43e686c88ea8c04a5d420879d9284b_6895.png",
+      "thumb": "images/thumb/0xe35b30ddae43e686c88ea8c04a5d420879d9284b_6895.jpg",
+      "description": "OK DEGEN — the NFT that whispers in your ear: “one more day… what’s the worst that could happen?” Spoiler: a lot. But we hold. Join us. Follow. Hold. Rot together. LFG. Or don’t. We’ll just assume you rage-quit like a normie. okdegen 👌",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xE35b30DDaE43e686C88EA8c04a5D420879d9284b/6895"
     },
     {
       "id": "0x74fcb6eb2a2d02207b36e804d800687ce78d210c_1",
