@@ -3,12 +3,12 @@
     "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
     "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644"
   ],
-  "totalCount": 62,
+  "totalCount": 64,
   "featuredCount": 15,
   "collections": [
     {
       "name": "Good Vibes Club",
-      "count": 36
+      "count": 38
     },
     {
       "name": "KILLABEARS",
@@ -114,7 +114,7 @@
       "contract": "0x307AF7d28AfEE82092aA95D35644898311CA5360",
       "tokenId": "3088",
       "image": "images/0x307af7d28afee82092aa95d35644898311ca5360_3088.png",
-      "thumb": "images/thumb/0x307af7d28afee82092aa95d35644898311ca5360_3088.jpg",
+      "thumb": "images/thumb/0x307af7d28afee82092aa95d35644898311ca5360_3088.png",
       "description": "In The Dragon Wastelands, the constant fog is known to birth phantom beasts from rock and rain. Taisuke, a wizard of supreme confidence, arrived to study this phenomenon, not fall for it. Yet, when a colossal spectral dragon rose from the swampy ground, they knew this was no illusion—it was their destiny. This was their awakening, the moment they would prove themself worthy of the ancient katana o",
       "tokenType": "ERC721",
       "featured": true,
@@ -158,11 +158,11 @@
       "walletShort": "0x28f6…e644",
       "name": "Fwog #5274",
       "collection": "fwogs",
-      "collectionSlug": "",
+      "collectionSlug": "fwogs",
       "contract": "0x8fe1a377B83921fe1429aDB1b8fbFECd45De9cd8",
       "tokenId": "5274",
       "image": "images/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.png",
-      "thumb": "images/thumb/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.png",
+      "thumb": "images/thumb/0x8fe1a377b83921fe1429adb1b8fbfecd45de9cd8_5274.jpg",
       "description": "Wut The Fwog",
       "tokenType": "ERC721",
       "featured": true,
@@ -242,7 +242,7 @@
       "contract": "0x524cAB2ec69124574082676e6F654a18df49A048",
       "tokenId": "8612",
       "image": "images/0x524cab2ec69124574082676e6f654a18df49a048_8612.png",
-      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_8612.png",
+      "thumb": "images/thumb/0x524cab2ec69124574082676e6f654a18df49a048_8612.jpg",
       "description": "Lil Pudgys are a collection of 22,222 randomly generated NFTs minted on Ethereum.",
       "tokenType": "ERC721",
       "featured": true,
@@ -386,7 +386,7 @@
       "contract": "0x0ae671a34935151C2de2E2e185d0C2DbDFe0645C",
       "tokenId": "7335",
       "image": "images/0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7335.png",
-      "thumb": "images/thumb/0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7335.jpg",
+      "thumb": "images/thumb/0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7335.png",
       "description": "Digital Slops is a 10K Collection of Cartoon Avatars depicting the slops staring in front of the screen. Sloppy in real life and Keyboard warriors in the digital world.",
       "tokenType": "ERC721",
       "featured": false,
@@ -681,6 +681,22 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3006"
     },
     {
+      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3353",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Citizen of Vibetown #3353",
+      "collection": "Good Vibes Club",
+      "collectionSlug": "good-vibes-club",
+      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
+      "tokenId": "3353",
+      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3353.jpg",
+      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3353.jpg",
+      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3353"
+    },
+    {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_3464",
       "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
       "walletShort": "0x3ed0…339a",
@@ -745,6 +761,22 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/3972"
     },
     {
+      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4214",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Citizen of Vibetown #4214",
+      "collection": "Good Vibes Club",
+      "collectionSlug": "good-vibes-club",
+      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
+      "tokenId": "4214",
+      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4214.jpg",
+      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4214.jpg",
+      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/4214"
+    },
+    {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4216",
       "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
       "walletShort": "0x3ed0…339a",
@@ -775,6 +807,22 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/4441"
+    },
+    {
+      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4533",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Citizen of Vibetown #4533",
+      "collection": "Good Vibes Club",
+      "collectionSlug": "good-vibes-club",
+      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
+      "tokenId": "4533",
+      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4533.jpg",
+      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4533.jpg",
+      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/4533"
     },
     {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_4608",
@@ -855,22 +903,6 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/5529"
-    },
-    {
-      "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_5697",
-      "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
-      "walletShort": "0x28f6…e644",
-      "name": "Citizen of Vibetown #5697",
-      "collection": "Good Vibes Club",
-      "collectionSlug": "good-vibes-club",
-      "contract": "0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4",
-      "tokenId": "5697",
-      "image": "images/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_5697.jpg",
-      "thumb": "images/thumb/0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_5697.jpg",
-      "description": "Good Vibes Club is a high-end art focused IP created by award-winning animation studio Toast, in partnership with SuperRare. Our mission is to spread the best vibes in Web3 through content that makes you feel good.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/5697"
     },
     {
       "id": "0xb8ea78fcacef50d41375e44e6814ebba36bb33c4_5739",
