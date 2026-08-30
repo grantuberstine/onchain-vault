@@ -3,16 +3,12 @@
     "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
     "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644"
   ],
-  "totalCount": 67,
+  "totalCount": 63,
   "featuredCount": 15,
   "collections": [
     {
       "name": "Good Vibes Club",
       "count": 35
-    },
-    {
-      "name": "BRAINROT",
-      "count": 4
     },
     {
       "name": "KILLABEARS",
@@ -351,70 +347,6 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0x252458DC2BC032192D714F3E67ACF1a3bFDF6f82/241"
-    },
-    {
-      "id": "0x38793a3fdfd098e820ddf59706280681354341fc_1854",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "BRAINROT #1854",
-      "collection": "BRAINROT",
-      "collectionSlug": "brainrot-323059976",
-      "contract": "0x38793a3FDfd098E820ddF59706280681354341fC",
-      "tokenId": "1854",
-      "image": "images/0x38793a3fdfd098e820ddf59706280681354341fc_1854.webp",
-      "thumb": "images/thumb/0x38793a3fdfd098e820ddf59706280681354341fc_1854.jpg",
-      "description": "Brainrot is a collection created by a combination of AI agents and an algorithmically driven combinatorial generator. The collection is judged and appraised by separate AI agents. The results you see here are the work of a network of agents working together to create the dumbest things you've ever seen.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x38793a3FDfd098E820ddF59706280681354341fC/1854"
-    },
-    {
-      "id": "0x38793a3fdfd098e820ddf59706280681354341fc_5250",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "BRAINROT #5250",
-      "collection": "BRAINROT",
-      "collectionSlug": "brainrot-323059976",
-      "contract": "0x38793a3FDfd098E820ddF59706280681354341fC",
-      "tokenId": "5250",
-      "image": "images/0x38793a3fdfd098e820ddf59706280681354341fc_5250.webp",
-      "thumb": "images/thumb/0x38793a3fdfd098e820ddf59706280681354341fc_5250.jpg",
-      "description": "Brainrot is a collection created by a combination of AI agents and an algorithmically driven combinatorial generator. The collection is judged and appraised by separate AI agents. The results you see here are the work of a network of agents working together to create the dumbest things you've ever seen.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x38793a3FDfd098E820ddF59706280681354341fC/5250"
-    },
-    {
-      "id": "0x38793a3fdfd098e820ddf59706280681354341fc_5992",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "BRAINROT #5992",
-      "collection": "BRAINROT",
-      "collectionSlug": "brainrot-323059976",
-      "contract": "0x38793a3FDfd098E820ddF59706280681354341fC",
-      "tokenId": "5992",
-      "image": "images/0x38793a3fdfd098e820ddf59706280681354341fc_5992.webp",
-      "thumb": "images/thumb/0x38793a3fdfd098e820ddf59706280681354341fc_5992.jpg",
-      "description": "Brainrot is a collection created by a combination of AI agents and an algorithmically driven combinatorial generator. The collection is judged and appraised by separate AI agents. The results you see here are the work of a network of agents working together to create the dumbest things you've ever seen.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x38793a3FDfd098E820ddF59706280681354341fC/5992"
-    },
-    {
-      "id": "0x38793a3fdfd098e820ddf59706280681354341fc_6445",
-      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
-      "walletShort": "0x3ed0…339a",
-      "name": "BRAINROT #6445",
-      "collection": "BRAINROT",
-      "collectionSlug": "brainrot-323059976",
-      "contract": "0x38793a3FDfd098E820ddF59706280681354341fC",
-      "tokenId": "6445",
-      "image": "images/0x38793a3fdfd098e820ddf59706280681354341fc_6445.webp",
-      "thumb": "images/thumb/0x38793a3fdfd098e820ddf59706280681354341fc_6445.jpg",
-      "description": "Brainrot is a collection created by a combination of AI agents and an algorithmically driven combinatorial generator. The collection is judged and appraised by separate AI agents. The results you see here are the work of a network of agents working together to create the dumbest things you've ever seen.",
-      "tokenType": "ERC721",
-      "featured": false,
-      "openSeaUrl": "https://opensea.io/assets/ethereum/0x38793a3FDfd098E820ddF59706280681354341fC/6445"
     },
     {
       "id": "0x7cc7add921e2222738561d03c89589929cefcf21_23",
