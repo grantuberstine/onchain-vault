@@ -3,16 +3,20 @@
     "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
     "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644"
   ],
-  "totalCount": 69,
-  "featuredCount": 15,
+  "totalCount": 81,
+  "featuredCount": 17,
   "collections": [
     {
       "name": "Good Vibes Club",
       "count": 43
     },
     {
+      "name": "Crazy Lizard Army",
+      "count": 9
+    },
+    {
       "name": "Pudgy Penguins",
-      "count": 4
+      "count": 5
     },
     {
       "name": "KILLABEARS",
@@ -33,6 +37,10 @@
     {
       "name": "Untitled Collection #252906009",
       "count": 2
+    },
+    {
+      "name": "Bored Ape Yacht Club",
+      "count": 1
     },
     {
       "name": "Chimpers",
@@ -67,6 +75,10 @@
       "count": 1
     },
     {
+      "name": "J48BATRINKETS",
+      "count": 1
+    },
+    {
       "name": "OGenie NFT",
       "count": 1
     },
@@ -76,6 +88,22 @@
     }
   ],
   "nfts": [
+    {
+      "id": "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d_3056",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Bored Ape Yacht Club #3056",
+      "collection": "Bored Ape Yacht Club",
+      "collectionSlug": "boredapeyachtclub",
+      "contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "tokenId": "3056",
+      "image": "images/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d_3056.png",
+      "thumb": "images/thumb/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d_3056.png",
+      "description": "The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain. Your Bored Ape doubles as your Yacht Club membership card, and grants access to members-only benefits, the first of which is access to THE BATHROOM, a collaborative graffiti board. Future areas and perks can be unlocked by the community through roadmap activation",
+      "tokenType": "ERC721",
+      "featured": true,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D/3056"
+    },
     {
       "id": "0x307af7d28afee82092aa95d35644898311ca5360_3088",
       "wallet": "0x28f6acf1de13ccd96d5b01a1aaf9716f6c7be644",
@@ -301,6 +329,22 @@
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xBd3531dA5CF5857e7CfAA92426877b022e612cf8/7163"
     },
     {
+      "id": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8_8605",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Pudgy Penguin #8605",
+      "collection": "Pudgy Penguins",
+      "collectionSlug": "pudgypenguins",
+      "contract": "0xBd3531dA5CF5857e7CfAA92426877b022e612cf8",
+      "tokenId": "8605",
+      "image": "images/0xbd3531da5cf5857e7cfaa92426877b022e612cf8_8605.png",
+      "thumb": "images/thumb/0xbd3531da5cf5857e7cfaa92426877b022e612cf8_8605.jpg",
+      "description": "A collection 8888 Cute Chubby Pudgy Penquins sliding around on the freezing ETH blockchain.",
+      "tokenType": "ERC721",
+      "featured": true,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0xBd3531dA5CF5857e7CfAA92426877b022e612cf8/8605"
+    },
+    {
       "id": "0xcbc978506a604036e2df13063103329ab5cda439_206",
       "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
       "walletShort": "0x3ed0…339a",
@@ -347,6 +391,150 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xa323Ddb41bE22a32cE3c6Cdc8cAF3F9eDE3b315a/165"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_3002",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #3002",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "3002",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_3002.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_3002.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/3002"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_4608",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #4608",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "4608",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_4608.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_4608.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/4608"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_5522",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #5522",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "5522",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_5522.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_5522.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/5522"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_5697",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #5697",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "5697",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_5697.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_5697.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/5697"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6468",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #6468",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "6468",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6468.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6468.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/6468"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6478",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #6478",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "6478",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6478.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6478.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/6478"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6485",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #6485",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "6485",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6485.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6485.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/6485"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6611",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #6611",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "6611",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6611.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6611.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/6611"
+    },
+    {
+      "id": "0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6762",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "Crazy Lizard Army #6762",
+      "collection": "Crazy Lizard Army",
+      "collectionSlug": "crazy-lizard-army",
+      "contract": "0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85",
+      "tokenId": "6762",
+      "image": "images/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6762.jpg",
+      "thumb": "images/thumb/0x86f6bf16f495afc065da4095ac12ccd5e83a8c85_6762.jpg",
+      "description": "The Crazy Lizard Army is made up of 10000 unique lizards. Become soldier in our army when you hold a lizard. In our army, there are all sorts of Lizards, some are good, some are evil, and some are CRAZY! Who knows which you will meet?\n\nDid you know you can get a Dragon by evolving 3 of your Lizards? Can't wait to see the kinds of Dragons that are created!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x86f6Bf16F495AFc065DA4095Ac12ccD5e83a8c85/6762"
     },
     {
       "id": "0x0ae671a34935151c2de2e2e185d0c2dbdfe0645c_7335",
@@ -1083,6 +1271,22 @@
       "tokenType": "ERC721",
       "featured": false,
       "openSeaUrl": "https://opensea.io/assets/ethereum/0xB8Ea78fcaCEf50d41375E44E6814ebbA36Bb33c4/6420"
+    },
+    {
+      "id": "0x0b0f6bc78ea9fb88dd58fdfe4c03f0c78721f649_815",
+      "wallet": "0x3ed0b065e6fd906ca20e4ebe080ea72c4325339a",
+      "walletShort": "0x3ed0…339a",
+      "name": "J48BATRINKET#815",
+      "collection": "J48BATRINKETS",
+      "collectionSlug": "j48batrinkets",
+      "contract": "0x0B0f6BC78Ea9FB88dD58fDfe4C03F0c78721f649",
+      "tokenId": "815",
+      "image": "images/0x0b0f6bc78ea9fb88dd58fdfe4c03f0c78721f649_815.jpg",
+      "thumb": "images/thumb/0x0b0f6bc78ea9fb88dd58fdfe4c03f0c78721f649_815.jpg",
+      "description": "J48BATRINKETS: the newest edition to the GROTTO LABS ecosystem.  With the entire collection available for 0.033ETH, you can afford to join GROTTO LABS and our archeological team in the dig for the rarest trinkets in the series. \r\n\r\nJ48BATRINKETS mints in random sequence with super rare subtypes and redeemable merchandise tokens plus 2 USDT prizes to be minted!",
+      "tokenType": "ERC721",
+      "featured": false,
+      "openSeaUrl": "https://opensea.io/assets/ethereum/0x0B0f6BC78Ea9FB88dD58fDfe4C03F0c78721f649/815"
     },
     {
       "id": "0x5b12e009e1b5f14b1e8f3a3b9fb3ca165702dcbd_1032",
